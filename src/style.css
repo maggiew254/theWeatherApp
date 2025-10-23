@@ -1,6 +1,12 @@
 body {
   background-color: #f9f7fe;
+  font-family: "Roboto Mono", monospace;
 }
-.weather-app {
-  background-color: white;
+.weather-info {
+  background: white;
+  box-shadow: 0 30px 50px rgba(65, 50, 100, 0.08);
+  max-width: 300px;
+  margin: 30px auto;
+  border-radius: 20px;
+  padding: 20px;
 }
