@@ -2,6 +2,10 @@ body {
   background-color: #f9f7fe;
   font-family: "Zalando Sans SemiExpanded", sans-serif;
 }
+
+header {
+  border-bottom: 1px solid;
+}
 footer {
   border-top: 3px solid whitesmoke;
   padding: 30px 0 0 0;
@@ -12,18 +16,53 @@ footer {
 .weather-info {
   background: white;
   box-shadow: 0 30px 50px rgba(65, 50, 100, 0.08);
-  max-width: 300px;
+  max-width: 400px;
   margin: 30px auto;
   border-radius: 20px;
   padding: 20px;
 }
 
+.weather-data {
+  display: flex;
+  justify-content: space-between;
+}
+
+.weather-city {
+  margin: 0;
+  font-size: 38px;
+  line-height: 48px;
+}
+.weather-details {
+  font-size: 16px;
+  line-height: 24px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.weather-details strong {
+  color: #f65282;
+}
+.weather-container {
+  display: flex;
+}
+.weather-temp {
+  font-size: 60px;
+}
+.weather-icon {
+  font-size: 30px;
+  margin-top: 20px;
+}
+.weather-unit {
+  margin-top: 10px;
+}
 #search-button {
   font-family: "Zalando Sans SemiExpanded", sans-serif;
+  padding: 25px 20px;
   font-weight: 600;
-  background-color: whitesmoke;
+  background-color: #b899f2;
   border-radius: 5px;
   padding: 5px 5px 5px 5px;
+  margin-left: 5px;
+  font-size: 16px;
 }
 
 #search-input {
@@ -31,9 +70,7 @@ footer {
   border: none;
   border-radius: 6px;
   width: 60%;
-  padding: 15px 20px;
+  padding: 15px 30px;
   font-size: 16px;
-}
-
-.search-form {
+  color: white;
 }
