@@ -56,11 +56,12 @@ footer {
 }
 #search-button {
   font-family: "Zalando Sans SemiExpanded", sans-serif;
-  padding: 25px 20px;
-  font-weight: 600;
+  border: none;
+  color: white;
+  font-weight: 400;
   background-color: #b899f2;
   border-radius: 5px;
-  padding: 5px 5px 5px 5px;
+  padding: 8px 12px;
   margin-left: 5px;
   font-size: 16px;
 }
