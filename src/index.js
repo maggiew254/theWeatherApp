@@ -1,13 +1,15 @@
 function updateWeather(response) {
   let temp = Math.round(response.data.temperature.current);
   let cityTemp = document.querySelector(".weather-temp");
+  let weatherDescription = document.querySelector("#description");
+
   // update temp
   cityTemp.innerHTML = temp;
 
   //update weather description
-  let weatherDescription = document.querySelector("#description");
   weatherDescription.innerHTML = response.data.condition.description;
 }
+
 function searchCity(city) {
   let apiKey = "24a6f34aet30b286677e3ofdb3c4aea0";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
