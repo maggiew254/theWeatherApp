@@ -15,21 +15,23 @@ function updateWeather(response) {
   weatherDescription.innerHTML = response.data.condition.description;
 
   //update humidity
-  weatherHumidity.innerHTML = `${response.data.temperature.humidity}%`;
+  humidityElement.style.display = "inline";
+  weatherHumidity.innerHTML = response.data.temperature.humidity;
 
   //update wind speed
-  windSpeed.innerHTML = `${response.data.wind.speed}km/h`;
+  windSpeedElement.style.display = "inline";
+  windSpeed.innerHTML = `${response.data.wind.speed} km/h`;
 
   //update time
-  currentTime.innerHTML = formatDate(date);
+  currentTime.innerHTML = `${formatDate(date)},`;
 
   //update icon
   weatherIcon.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon" />`;
 }
 
 function formatDate(date) {
-  let todaysDate = new Date();
-
+  let minutes = date.getMinutes();
+  let hours = date.getHours();
   let days = [
     "Sunday",
     "Monday",
@@ -39,16 +41,13 @@ function formatDate(date) {
     "Friday",
     "Saturday",
   ];
-
-  let minutes = todaysDate.getMinutes();
-  let hours = todaysDate.getHours();
-  let day = days[todaysDate.getDay()];
+  let day = days[date.getDay()];
 
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
 
-  return `${day}, ${hours}:${minutes}`;
+  return `${day} ${hours}:${minutes}`;
 }
 
 function searchCity(city) {
@@ -63,6 +62,12 @@ function search(event) {
   city.innerHTML = searchInput.value;
   searchCity(searchInput.value);
 }
+
+let humidityElement = document.getElementById("humidity-description");
+humidityElement.style.display = "none";
+
+let windSpeedElement = document.getElementById("wind-description");
+windSpeedElement.style.display = "none";
 
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", search);

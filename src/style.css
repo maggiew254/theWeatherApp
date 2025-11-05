@@ -38,22 +38,31 @@ footer {
   color: rgba(0, 0, 0, 0.5);
 }
 
-.weather-details strong {
+.weather-details #humidity {
   color: #f65282;
+  font-weight: bold;
+}
+
+.weather-details #wind-speed {
+  color: #f65282;
+  font-weight: bold;
 }
 .weather-container {
   display: flex;
 }
 .weather-temp {
+  margin-top: 10px;
   font-size: 60px;
 }
 .weather-icon {
-  font-size: 30px;
-  margin-top: 20px;
+  width: 100px;
+  height: 100px;
 }
 .weather-unit {
-  margin-top: 10px;
+  margin-top: 20px;
+  margin-right: 10px;
 }
+
 #search-button {
   font-family: "Zalando Sans SemiExpanded", sans-serif;
   border: none;
