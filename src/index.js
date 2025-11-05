@@ -1,6 +1,6 @@
 function updateWeather(response) {
   let temp = Math.round(response.data.temperature.current);
-  let cityTemp = document.querySelector(".weather-temp");
+  let cityTemp = document.querySelector("#weather-temp");
   let weatherDescription = document.querySelector("#description");
   let weatherHumidity = document.querySelector("#humidity");
   let windSpeed = document.querySelector("#wind-speed");
@@ -9,7 +9,7 @@ function updateWeather(response) {
   let weatherIcon = document.querySelector("#weather-icon");
 
   // update temp
-  iconElement.style.display = "inline";
+  unitElement.style.display = "inline";
   cityTemp.innerHTML = temp;
 
   //update weather description
@@ -71,7 +71,7 @@ humidityElement.style.display = "none";
 let windSpeedElement = document.getElementById("wind-description");
 windSpeedElement.style.display = "none";
 
-let unitElement = document.getElementsByClassName("weather-unit");
+let unitElement = document.getElementById("weather-unit");
 unitElement.style.display = "none";
 
 let searchFormElement = document.querySelector("#search-form");
