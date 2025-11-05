@@ -9,6 +9,7 @@ function updateWeather(response) {
   let weatherIcon = document.querySelector("#weather-icon");
 
   // update temp
+  iconElement.style.display = "inline";
   cityTemp.innerHTML = temp;
 
   //update weather description
@@ -26,6 +27,7 @@ function updateWeather(response) {
   currentTime.innerHTML = `${formatDate(date)},`;
 
   //update icon
+
   weatherIcon.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon" />`;
 }
 
@@ -68,6 +70,9 @@ humidityElement.style.display = "none";
 
 let windSpeedElement = document.getElementById("wind-description");
 windSpeedElement.style.display = "none";
+
+let unitElement = document.getElementsByClassName("weather-unit");
+unitElement.style.display = "none";
 
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", search);
