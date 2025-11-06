@@ -29,11 +29,13 @@ function updateWeather(response) {
   //update icon
 
   weatherIcon.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon" />`;
+  getForecast(response.data.city);
 }
 
 function formatDate(date) {
-  let minutes = date.getMinutes();
-  let hours = date.getHours();
+  let currentDate = new Date();
+  let minutes = currentDate.getMinutes();
+  let hours = currentDate.getHours();
   let days = [
     "Sunday",
     "Monday",
@@ -43,7 +45,7 @@ function formatDate(date) {
     "Friday",
     "Saturday",
   ];
-  let day = days[date.getDay()];
+  let day = days[currentDate.getDay()];
 
   if (minutes < 10) {
     minutes = `0${minutes}`;
@@ -52,27 +54,46 @@ function formatDate(date) {
   return `${day} ${hours}:${minutes}`;
 }
 
-function getForecast() {
-  let days = ["Tue", "Wed", "Thur", "Fri", "Sat"];
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[date.getDay()];
+}
+
+function showForecast(response) {
   let forecastTemp = "";
 
-  days.forEach(function (day) {
-    forecastTemp =
-      forecastTemp +
-      `
+  response.data.daily.forEach(function (day, index) {
+    if (index < 5) {
+      forecastTemp =
+        forecastTemp +
+        `
   <div class="weather-forecast-data">
-    <div class="weather-forecast-day">${day}</div>
+    <div class="weather-forecast-day">${formatDay(day.time)}</div>
 
-    <div class="weather-forecast-icon">🌦</div>
+    <img src="${day.condition.icon_url}" id="weather-icon" />
 
     <div class="weather-forecast-temps">
-      <div class="weather-forecast temp">9°C</div>
-      <div class="weather-forecast-temp">14°C</div>
+      <div class="weather-forecast temp">${Math.round(
+        day.temperature.minimum
+      )}°C</div>
+      <div class="weather-forecast-temp">${Math.round(
+        day.temperature.maximum
+      )}°C</div>
     </div>
   </div>`;
+    }
   });
+
   let forecast = document.querySelector("#forecast");
   forecast.innerHTML = forecastTemp;
+}
+
+function getForecast(city) {
+  let apiKey = "b2a5adcct04b33178913oc335f405433";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+  axios(apiUrl).then(showForecast);
 }
 
 function searchCity(city) {
@@ -80,6 +101,7 @@ function searchCity(city) {
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(updateWeather);
 }
+
 function search(event) {
   event.preventDefault();
   let searchInput = document.querySelector("#search-input");
@@ -99,5 +121,3 @@ unitElement.style.display = "none";
 
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", search);
-
-getForecast();
